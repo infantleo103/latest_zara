@@ -68,7 +68,15 @@ export class MemStorage implements IStorage {
       imageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"
     };
 
-    [womenCategory, menCategory, kidsCategory, homeCategory].forEach(category => {
+    const customizedCategory: Category = {
+      id: randomUUID(),
+      name: "CUSTOMIZED",
+      slug: "customized",
+      description: "Personalized and bespoke fashion pieces",
+      imageUrl: "https://images.unsplash.com/photo-1594938384820-28d8f7f4bb8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"
+    };
+
+    [womenCategory, menCategory, kidsCategory, homeCategory, customizedCategory].forEach(category => {
       this.categories.set(category.id, category);
     });
 
@@ -169,6 +177,98 @@ export class MemStorage implements IStorage {
         colors: ["Black", "Brown"] as string[],
         inStock: true,
         featured: true
+      },
+
+      // Customized Products
+      {
+        name: "CUSTOM TAILORED SUIT",
+        slug: "custom-tailored-suit",
+        description: "Bespoke suit tailored to your exact measurements and style preferences. Choose from premium fabrics and personalized details.",
+        price: "89900.00",
+        categoryId: customizedCategory.id,
+        images: [
+          "https://images.unsplash.com/photo-1594938384820-28d8f7f4bb8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800",
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"
+        ],
+        sizes: ["Custom"] as string[],
+        colors: ["Navy", "Charcoal", "Black", "Brown"] as string[],
+        inStock: true,
+        featured: false
+      },
+      {
+        name: "PERSONALIZED LEATHER JACKET",
+        slug: "personalized-leather-jacket",
+        description: "Custom leather jacket with your choice of leather type, color, and personalized embossing or embroidery.",
+        price: "54900.00",
+        categoryId: customizedCategory.id,
+        images: [
+          "https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800",
+          "https://images.unsplash.com/photo-1521223890158-f9f7c3d5d504?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"
+        ],
+        sizes: ["Custom"] as string[],
+        colors: ["Black", "Brown", "Tan", "Wine"] as string[],
+        inStock: true,
+        featured: false
+      },
+      {
+        name: "BESPOKE EVENING DRESS",
+        slug: "bespoke-evening-dress",
+        description: "Elegant evening dress designed and tailored specifically for you. Choice of fabrics, necklines, and custom details.",
+        price: "129900.00",
+        categoryId: customizedCategory.id,
+        images: [
+          "https://images.unsplash.com/photo-1566479179817-c9c49e2bb2c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800",
+          "https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"
+        ],
+        sizes: ["Custom"] as string[],
+        colors: ["Black", "Navy", "Emerald", "Burgundy"] as string[],
+        inStock: true,
+        featured: false
+      },
+      {
+        name: "CUSTOM MONOGRAMMED SHIRT",
+        slug: "custom-monogrammed-shirt",
+        description: "Premium cotton shirt with custom monogramming, collar styles, and fit adjustments to your preferences.",
+        price: "12900.00",
+        categoryId: customizedCategory.id,
+        images: [
+          "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800",
+          "https://images.unsplash.com/photo-1619955074429-573cdf95c42c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"
+        ],
+        sizes: ["Custom"] as string[],
+        colors: ["White", "Light Blue", "Pink", "Gray"] as string[],
+        inStock: true,
+        featured: false
+      },
+      {
+        name: "TAILORED WOOL COAT",
+        slug: "tailored-wool-coat",
+        description: "Luxurious wool coat with custom tailoring, choice of wool blend, and personalized interior monogramming.",
+        price: "74900.00",
+        categoryId: customizedCategory.id,
+        images: [
+          "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800",
+          "https://images.unsplash.com/photo-1559563458-527698bf5295?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"
+        ],
+        sizes: ["Custom"] as string[],
+        colors: ["Camel", "Navy", "Black", "Gray"] as string[],
+        inStock: true,
+        featured: false
+      },
+      {
+        name: "CUSTOM DENIM JEANS",
+        slug: "custom-denim-jeans",
+        description: "Perfect-fit denim jeans with custom measurements, wash preferences, and personalized details.",
+        price: "19900.00",
+        categoryId: customizedCategory.id,
+        images: [
+          "https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800",
+          "https://images.unsplash.com/photo-1565084888279-aca607ecce0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"
+        ],
+        sizes: ["Custom"] as string[],
+        colors: ["Indigo", "Black", "Light Wash", "Dark Wash"] as string[],
+        inStock: true,
+        featured: false
       }
     ];
 
