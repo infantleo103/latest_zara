@@ -1,15 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCartStore } from '@/lib/cart';
 import { cn } from '@/lib/utils';
 
-export default function Header() {
+interface HeaderProps {
+  onSearchOpen: () => void;
+}
+
+export default function Header({ onSearchOpen }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [location] = useLocation();
   const { openCart, getTotalItems } = useCartStore();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navigation = [
     { name: 'WOMAN', href: '/category/woman' },
@@ -22,44 +34,71 @@ export default function Header() {
   const totalItems = getTotalItems();
 
   return (
-    <header className="sticky top-0 bg-white z-50 border-b border-gray-100">
-      {/* Top Bar */}
-      <div className="hidden md:block bg-black text-white text-xs py-2">
-        <div className="container mx-auto px-4 text-center">
-          FREE DELIVERY ON ORDERS OVER ₹2,990
-        </div>
-      </div>
+    <>
+      {/* Floating Header */}
+      <header className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        scrolled 
+          ? "bg-white/95 backdrop-blur-md shadow-sm" 
+          : "bg-transparent"
+      )}>
+        {/* Top Bar - only show when scrolled */}
+        {scrolled && (
+          <div className="hidden md:block bg-black text-white text-xs py-1">
+            <div className="container mx-auto px-6 text-center">
+              FREE DELIVERY ON ORDERS OVER ₹2,990
+            </div>
+          </div>
+        )}
 
-      {/* Main Navigation */}
-      <nav className="container mx-auto px-4 py-4">
+        {/* Main Navigation */}
+        <nav className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
           {/* Mobile Menu Toggle */}
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden"
+            className={cn(
+              "md:hidden hover:bg-transparent",
+              scrolled ? "text-black hover:text-gray-600" : "text-white hover:text-gray-200"
+            )}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             data-testid="button-toggle-mobile-menu"
           >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileMenuOpen ? (
+              <X size={20} className={scrolled ? "" : "text-shadow"} />
+            ) : (
+              <Menu size={20} className={scrolled ? "" : "text-shadow"} />
+            )}
           </Button>
 
           {/* Logo */}
-          <div className="text-2xl md:text-3xl font-bold tracking-widest">
+          <div className={cn(
+            "font-light tracking-[0.3em] transition-all duration-300",
+            scrolled 
+              ? "text-3xl md:text-4xl text-black" 
+              : "text-4xl md:text-6xl text-white text-shadow"
+          )}>
             <Link href="/" data-testid="link-home">
               ZARA
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8 text-sm font-medium">
+          <div className={cn(
+            "hidden md:flex space-x-8 text-sm font-light tracking-wide transition-colors",
+            scrolled ? "text-black" : "text-white"
+          )}>
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'hover:text-gray-600 transition-colors',
-                  location === item.href && 'font-semibold'
+                  'hover:opacity-70 transition-all duration-200',
+                  location === item.href && 'font-normal border-b',
+                  scrolled 
+                    ? 'hover:text-gray-600 border-black' 
+                    : 'hover:text-gray-200 border-white text-shadow'
                 )}
                 data-testid={`link-${item.name.toLowerCase()}`}
               >
@@ -69,33 +108,52 @@ export default function Header() {
           </div>
 
           {/* Action Icons */}
-          <div className="flex items-center space-x-4 text-lg">
+          <div className={cn(
+            "flex items-center space-x-4 text-lg transition-colors",
+            scrolled ? "text-black" : "text-white"
+          )}>
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setSearchOpen(true)}
+              onClick={onSearchOpen}
+              className={cn(
+                "hover:bg-transparent",
+                scrolled ? "hover:text-gray-600" : "hover:text-gray-200"
+              )}
               data-testid="button-open-search"
             >
-              <Search size={20} />
+              <Search size={20} className={scrolled ? "" : "text-shadow"} />
             </Button>
             <Button
               variant="ghost"
               size="sm"
+              className={cn(
+                "hover:bg-transparent",
+                scrolled ? "hover:text-gray-600" : "hover:text-gray-200"
+              )}
               data-testid="button-open-account"
             >
-              <User size={20} />
+              <User size={20} className={scrolled ? "" : "text-shadow"} />
             </Button>
             <Button
               variant="ghost"
               size="sm"
-              className="relative"
+              className={cn(
+                "relative hover:bg-transparent",
+                scrolled ? "hover:text-gray-600" : "hover:text-gray-200"
+              )}
               onClick={openCart}
               data-testid="button-open-cart"
             >
-              <ShoppingBag size={20} />
+              <ShoppingBag size={20} className={scrolled ? "" : "text-shadow"} />
               {totalItems > 0 && (
                 <span
-                  className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+                  className={cn(
+                    "absolute -top-2 -right-2 text-xs rounded-full w-5 h-5 flex items-center justify-center",
+                    scrolled 
+                      ? "bg-black text-white" 
+                      : "bg-white text-black"
+                  )}
                   data-testid="text-cart-count"
                 >
                   {totalItems}
@@ -107,13 +165,13 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4">
-            <div className="flex flex-col space-y-4 text-center">
+          <div className="md:hidden mt-4 bg-white/95 backdrop-blur-md">
+            <div className="flex flex-col space-y-4 text-center py-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="py-2 border-b border-gray-100 last:border-b-0"
+                  className="py-2 text-black font-light tracking-wide hover:opacity-70 transition-opacity"
                   onClick={() => setMobileMenuOpen(false)}
                   data-testid={`link-mobile-${item.name.toLowerCase()}`}
                 >
@@ -125,5 +183,6 @@ export default function Header() {
         )}
       </nav>
     </header>
+    </>
   );
 }

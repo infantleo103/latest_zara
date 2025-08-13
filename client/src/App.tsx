@@ -1,4 +1,5 @@
 import { Switch, Route } from "wouter";
+import { useState } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -24,16 +25,18 @@ function Router() {
 }
 
 function App() {
+  const [searchOpen, setSearchOpen] = useState(false);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="min-h-screen bg-white">
-          <Header />
+          <Header onSearchOpen={() => setSearchOpen(true)} />
           <main>
             <Router />
           </main>
           <Footer />
-          <SearchModal />
+          <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
           <CartModal />
           <Toaster />
         </div>

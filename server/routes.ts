@@ -69,7 +69,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Cart
   app.get("/api/cart", async (req, res) => {
     try {
-      const sessionId = req.sessionID || "anonymous";
+      const sessionId = "anonymous";
       const cartItems = await storage.getCartItems(sessionId);
       res.json(cartItems);
     } catch (error) {
@@ -79,7 +79,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/cart", async (req, res) => {
     try {
-      const sessionId = req.sessionID || "anonymous";
+      const sessionId = "anonymous";
       const validatedData = insertCartItemSchema.parse({
         ...req.body,
         sessionId
@@ -124,7 +124,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.delete("/api/cart", async (req, res) => {
     try {
-      const sessionId = req.sessionID || "anonymous";
+      const sessionId = "anonymous";
       await storage.clearCart(sessionId);
       res.status(204).send();
     } catch (error) {

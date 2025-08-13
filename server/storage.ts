@@ -192,7 +192,12 @@ export class MemStorage implements IStorage {
 
   async createCategory(category: InsertCategory): Promise<Category> {
     const id = randomUUID();
-    const newCategory: Category = { ...category, id };
+    const newCategory: Category = { 
+      ...category, 
+      id,
+      description: category.description ?? null,
+      imageUrl: category.imageUrl ?? null
+    };
     this.categories.set(id, newCategory);
     return newCategory;
   }
@@ -236,7 +241,12 @@ export class MemStorage implements IStorage {
     const newProduct: Product = { 
       ...product, 
       id, 
-      createdAt: new Date() 
+      createdAt: new Date(),
+      description: product.description ?? null,
+      categoryId: product.categoryId ?? null,
+      images: product.images ?? [],
+      sizes: product.sizes ?? [],
+      colors: product.colors ?? []
     };
     this.products.set(id, newProduct);
     return newProduct;
@@ -266,7 +276,13 @@ export class MemStorage implements IStorage {
 
   async addCartItem(item: InsertCartItem): Promise<CartItem> {
     const id = randomUUID();
-    const newItem: CartItem = { ...item, id };
+    const newItem: CartItem = { 
+      ...item, 
+      id,
+      size: item.size ?? null,
+      color: item.color ?? null,
+      productId: item.productId ?? null
+    };
     this.cartItems.set(id, newItem);
     return newItem;
   }
