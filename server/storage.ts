@@ -81,8 +81,8 @@ export class MemStorage implements IStorage {
         price: "12990.00",
         categoryId: womenCategory.id,
         images: ["https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"],
-        sizes: ["XS", "S", "M", "L", "XL"],
-        colors: ["Black", "Camel", "Navy"],
+        sizes: ["XS", "S", "M", "L", "XL"] as string[],
+        colors: ["Black", "Camel", "Navy"] as string[],
         inStock: true,
         featured: true
       },
@@ -93,8 +93,8 @@ export class MemStorage implements IStorage {
         price: "8990.00",
         categoryId: womenCategory.id,
         images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"],
-        sizes: ["One Size"],
-        colors: ["Black", "Brown", "Tan"],
+        sizes: ["One Size"] as string[],
+        colors: ["Black", "Brown", "Tan"] as string[],
         inStock: true,
         featured: true
       },
@@ -105,8 +105,8 @@ export class MemStorage implements IStorage {
         price: "3990.00",
         categoryId: womenCategory.id,
         images: ["https://images.unsplash.com/photo-1594633313593-bab3825d0caf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"],
-        sizes: ["XS", "S", "M", "L", "XL"],
-        colors: ["White", "Light Blue"],
+        sizes: ["XS", "S", "M", "L", "XL"] as string[],
+        colors: ["White", "Light Blue"] as string[],
         inStock: true,
         featured: true
       },
@@ -117,8 +117,8 @@ export class MemStorage implements IStorage {
         price: "2990.00",
         categoryId: womenCategory.id,
         images: ["https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"],
-        sizes: ["One Size"],
-        colors: ["Gold", "Silver"],
+        sizes: ["One Size"] as string[],
+        colors: ["Gold", "Silver"] as string[],
         inStock: true,
         featured: true
       },
@@ -129,8 +129,8 @@ export class MemStorage implements IStorage {
         price: "9990.00",
         categoryId: womenCategory.id,
         images: ["https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"],
-        sizes: ["XS", "S", "M", "L", "XL"],
-        colors: ["Black", "Navy", "Charcoal"],
+        sizes: ["XS", "S", "M", "L", "XL"] as string[],
+        colors: ["Black", "Navy", "Charcoal"] as string[],
         inStock: true,
         featured: true
       },
@@ -141,8 +141,8 @@ export class MemStorage implements IStorage {
         price: "3590.00",
         categoryId: womenCategory.id,
         images: ["https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"],
-        sizes: ["One Size"],
-        colors: ["Black", "Tortoise"],
+        sizes: ["One Size"] as string[],
+        colors: ["Black", "Tortoise"] as string[],
         inStock: true,
         featured: true
       },
@@ -153,8 +153,8 @@ export class MemStorage implements IStorage {
         price: "4990.00",
         categoryId: womenCategory.id,
         images: ["https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"],
-        sizes: ["One Size"],
-        colors: ["Multicolor"],
+        sizes: ["One Size"] as string[],
+        colors: ["Multicolor"] as string[],
         inStock: true,
         featured: true
       },
@@ -165,8 +165,8 @@ export class MemStorage implements IStorage {
         price: "11990.00",
         categoryId: menCategory.id,
         images: ["https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"],
-        sizes: ["39", "40", "41", "42", "43", "44", "45"],
-        colors: ["Black", "Brown"],
+        sizes: ["39", "40", "41", "42", "43", "44", "45"] as string[],
+        colors: ["Black", "Brown"] as string[],
         inStock: true,
         featured: true
       }
@@ -281,7 +281,8 @@ export class MemStorage implements IStorage {
       id,
       size: item.size ?? null,
       color: item.color ?? null,
-      productId: item.productId ?? null
+      productId: item.productId ?? null,
+      quantity: item.quantity ?? 1
     };
     this.cartItems.set(id, newItem);
     return newItem;

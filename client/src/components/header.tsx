@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, User, ShoppingBag, Menu, X, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCartStore } from '@/lib/cart';
+import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 
 interface HeaderProps {
@@ -12,8 +13,9 @@ interface HeaderProps {
 export default function Header({ onSearchOpen }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const { openCart, getTotalItems } = useCartStore();
+  const { user, isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -124,17 +126,41 @@ export default function Header({ onSearchOpen }: HeaderProps) {
             >
               <Search size={20} className={scrolled ? "" : "text-shadow"} />
             </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className={cn(
-                "hover:bg-transparent",
-                scrolled ? "hover:text-gray-600" : "hover:text-gray-200"
-              )}
-              data-testid="button-open-account"
-            >
-              <User size={20} className={scrolled ? "" : "text-shadow"} />
-            </Button>
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-2">
+                <span className={cn(
+                  "text-sm font-light hidden sm:block",
+                  scrolled ? "text-gray-700" : "text-white"
+                )}>
+                  {user?.firstName || user?.email?.split('@')[0]}
+                </span>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={logout}
+                  className={cn(
+                    "hover:bg-transparent",
+                    scrolled ? "hover:text-gray-600" : "hover:text-gray-200"
+                  )}
+                  data-testid="button-logout"
+                >
+                  <LogOut size={16} className={scrolled ? "" : "text-shadow"} />
+                </Button>
+              </div>
+            ) : (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setLocation('/login')}
+                className={cn(
+                  "hover:bg-transparent",
+                  scrolled ? "hover:text-gray-600" : "hover:text-gray-200"
+                )}
+                data-testid="button-open-account"
+              >
+                <User size={20} className={scrolled ? "" : "text-shadow"} />
+              </Button>
+            )}
             <Button
               variant="ghost"
               size="sm"
