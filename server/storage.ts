@@ -26,11 +26,13 @@ export class MemStorage implements IStorage {
   private categories: Map<string, Category>;
   private products: Map<string, Product>;
   private cartItems: Map<string, CartItem>;
+  private customDesigns: Map<string, any>;
 
   constructor() {
     this.categories = new Map();
     this.products = new Map();
     this.cartItems = new Map();
+    this.customDesigns = new Map();
     this.seedData();
   }
 
@@ -363,6 +365,51 @@ export class MemStorage implements IStorage {
       ...product,
       category: product.categoryId ? this.categories.get(product.categoryId) || null : null
     }));
+  }
+
+  // Custom design methods
+  async saveCustomDesign(userId: string, productId: string, designData: any, textElements: any[], imageElements: any[]): Promise<string> {
+    const designId = randomUUID();
+    
+    // Store the design data in memory (in production this would go to database)
+    const customDesign = {
+      id: designId,
+      userId,
+      productId,
+      orderId: null,
+      designData,
+      previewImageUrl: null,
+      textElements,
+      imageElements,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+    
+    // For demo purposes, store in a Map (in production, use database)
+    if (!this.customDesigns) {
+      this.customDesigns = new Map();
+    }
+    this.customDesigns.set(designId, customDesign);
+    
+    return designId;
+  }
+
+  async getCustomDesign(designId: string): Promise<any | undefined> {
+    return this.customDesigns?.get(designId);
+  }
+
+  async getCustomDesignsByUser(userId: string): Promise<any[]> {
+    if (!this.customDesigns) return [];
+    
+    return Array.from(this.customDesigns.values()).filter(design => design.userId === userId);
+  }
+
+  async attachCustomDesignToOrder(designId: string, orderId: string): Promise<void> {
+    const design = this.customDesigns?.get(designId);
+    if (design) {
+      design.orderId = orderId;
+      design.updatedAt = new Date();
+    }
   }
 
   async getCartItems(sessionId: string): Promise<CartItemWithProduct[]> {

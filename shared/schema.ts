@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { sql, relations } from "drizzle-orm";
 import { pgTable, text, varchar, integer, decimal, boolean, timestamp, jsonb, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
@@ -138,3 +138,104 @@ export interface CartItemWithProduct extends CartItem {
 export interface OrderWithItems extends Order {
   items: (OrderItem & { product: Product })[];
 }
+
+// Customization tables
+export const customDesigns = pgTable("custom_designs", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  userId: varchar("user_id").references(() => users.id),
+  productId: varchar("product_id").references(() => products.id),
+  orderId: varchar("order_id").references(() => orders.id),
+  designData: jsonb("design_data").notNull(), // Stores the complete design configuration
+  previewImageUrl: varchar("preview_image_url"), // URL to generated preview image
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const customTextElements = pgTable("custom_text_elements", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  designId: varchar("design_id").references(() => customDesigns.id, { onDelete: "cascade" }),
+  text: varchar("text").notNull(),
+  x: integer("x").notNull(),
+  y: integer("y").notNull(),
+  fontSize: integer("font_size").notNull(),
+  fontFamily: varchar("font_family").notNull(),
+  color: varchar("color").notNull(),
+  fontWeight: varchar("font_weight").notNull(),
+  rotation: integer("rotation").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const customImageElements = pgTable("custom_image_elements", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  designId: varchar("design_id").references(() => customDesigns.id, { onDelete: "cascade" }),
+  imageUrl: varchar("image_url").notNull(), // URL to uploaded image
+  originalFileName: varchar("original_file_name"),
+  x: integer("x").notNull(),
+  y: integer("y").notNull(),
+  width: integer("width").notNull(),
+  height: integer("height").notNull(),
+  rotation: integer("rotation").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Relations for customization
+export const customDesignsRelations = relations(customDesigns, ({ one, many }) => ({
+  user: one(users, {
+    fields: [customDesigns.userId],
+    references: [users.id],
+  }),
+  product: one(products, {
+    fields: [customDesigns.productId],
+    references: [products.id],
+  }),
+  order: one(orders, {
+    fields: [customDesigns.orderId],
+    references: [orders.id],
+  }),
+  textElements: many(customTextElements),
+  imageElements: many(customImageElements),
+}));
+
+export const customTextElementsRelations = relations(customTextElements, ({ one }) => ({
+  design: one(customDesigns, {
+    fields: [customTextElements.designId],
+    references: [customDesigns.id],
+  }),
+}));
+
+export const customImageElementsRelations = relations(customImageElements, ({ one }) => ({
+  design: one(customDesigns, {
+    fields: [customImageElements.designId],
+    references: [customDesigns.id],
+  }),
+}));
+
+// Customization schema types
+export const insertCustomDesignSchema = createInsertSchema(customDesigns).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertCustomTextElementSchema = createInsertSchema(customTextElements).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertCustomImageElementSchema = createInsertSchema(customImageElements).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type CustomDesign = typeof customDesigns.$inferSelect;
+export type InsertCustomDesign = z.infer<typeof insertCustomDesignSchema>;
+export type CustomTextElement = typeof customTextElements.$inferSelect;
+export type InsertCustomTextElement = z.infer<typeof insertCustomTextElementSchema>;
+export type CustomImageElement = typeof customImageElements.$inferSelect;
+export type InsertCustomImageElement = z.infer<typeof insertCustomImageElementSchema>;
+
+export type CustomDesignWithElements = CustomDesign & {
+  textElements: CustomTextElement[];
+  imageElements: CustomImageElement[];
+  product?: Product;
+};

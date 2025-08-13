@@ -224,16 +224,51 @@ export default function Customization() {
     }
   }, [textElements, imageElements, updateTextElement, updateImageElement]);
 
-  const addToCart = useCallback(() => {
+  const addToCart = useCallback(async () => {
     if (!product) return;
-    
-    addItem(product.id, 1, "Custom", "Custom Design");
-    
-    toast({
-      title: "Added to cart",
-      description: "Your customized product has been added to cart",
-    });
-  }, [product, addItem, toast]);
+
+    try {
+      // Save custom design first
+      const designData = {
+        productId: product.id,
+        textElements,
+        imageElements,
+        canvas: {
+          width: 600,
+          height: 600
+        }
+      };
+
+      const response = await fetch('/api/custom-designs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(designData),
+      });
+
+      if (response.ok) {
+        const { designId } = await response.json();
+        
+        // Add to cart with custom design ID
+        addItem(product.id, 1, "Custom", `Custom Design #${designId.slice(-6)}`);
+        
+        toast({
+          title: "Added to cart",
+          description: "Your customized product has been saved and added to cart",
+        });
+      } else {
+        throw new Error('Failed to save design');
+      }
+    } catch (error) {
+      console.error('Error saving custom design:', error);
+      toast({
+        title: "Error",
+        description: "Failed to save your custom design. Please try again.",
+        variant: "destructive",
+      });
+    }
+  }, [product, textElements, imageElements, addItem, toast]);
 
   const selectedTextElement = textElements.find(el => el.id === selectedElement);
   const selectedImageElement = imageElements.find(el => el.id === selectedElement);

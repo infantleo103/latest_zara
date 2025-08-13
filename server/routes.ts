@@ -136,6 +136,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Virtual Try-On endpoint
   app.post("/api/virtual-tryon", processVirtualTryOn);
 
+  // Custom design routes
+  app.post("/api/custom-designs", async (req, res) => {
+    try {
+      const { productId, textElements, imageElements, canvas } = req.body;
+      
+      // For demo purposes, we'll create a design without user authentication
+      // In production, you'd require authentication and get user ID from session
+      const userId = "guest-user"; // This would come from authenticated session
+      
+      const designData = {
+        canvas,
+        elementsCount: textElements.length + imageElements.length,
+        createdAt: new Date().toISOString()
+      };
+
+      const designId = await storage.saveCustomDesign(
+        userId,
+        productId,
+        designData,
+        textElements,
+        imageElements
+      );
+
+      res.json({ 
+        success: true, 
+        designId,
+        message: "Custom design saved successfully" 
+      });
+    } catch (error: any) {
+      console.error("Error saving custom design:", error);
+      res.status(500).json({ message: "Failed to save custom design" });
+    }
+  });
+
+  app.get("/api/custom-designs/:designId", async (req, res) => {
+    try {
+      const { designId } = req.params;
+      const design = await storage.getCustomDesign(designId);
+      
+      if (!design) {
+        return res.status(404).json({ message: "Design not found" });
+      }
+
+      res.json(design);
+    } catch (error: any) {
+      console.error("Error fetching custom design:", error);
+      res.status(500).json({ message: "Failed to fetch custom design" });
+    }
+  });
+
+  app.get("/api/users/:userId/custom-designs", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const designs = await storage.getCustomDesignsByUser(userId);
+      
+      res.json(designs);
+    } catch (error: any) {
+      console.error("Error fetching user designs:", error);
+      res.status(500).json({ message: "Failed to fetch user designs" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

@@ -75,6 +75,16 @@ Preferred communication style: Simple, everyday language.
 - **Customization Flow**: Dedicated category page for browsing all customizable products
 - **Visual Design**: Custom badges, specialized imagery, and tailored product descriptions
 
+### Data Storage for Customization (August 2025)
+- **Custom Design Tables**: PostgreSQL tables for storing user customization data
+  - `custom_designs`: Main design records with product reference and order linking
+  - `custom_text_elements`: Text overlays with font, position, and styling data
+  - `custom_image_elements`: Uploaded images with positioning and transformation data
+- **Design Persistence**: Complete customization state saved when adding to cart
+- **Order Integration**: Custom designs linked to orders for production fulfillment
+- **User Design History**: Ability to retrieve and view past customization projects
+- **API Endpoints**: RESTful routes for creating, retrieving, and managing custom designs
+
 ### Aesthetic Design Overhaul
 - **Floating Navigation**: Transparent header that becomes solid on scroll with enlarged ZARA logo
 - **Hero Section**: Full-screen carousel with rotating background images and sophisticated typography
