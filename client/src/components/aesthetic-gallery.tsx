@@ -7,19 +7,19 @@ export default function AestheticGallery() {
 
   const galleryImages = [
     {
-      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=2000',
+      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080',
       title: 'WOMEN',
       subtitle: 'NEW ARRIVALS',
       link: '/category/woman'
     },
     {
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=2000',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080',
       title: 'MEN',
       subtitle: 'SPRING COLLECTION',
       link: '/category/man'
     },
     {
-      image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&h=2000',
+      image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080',
       title: 'KIDS',
       subtitle: 'PLAYFUL STYLES',
       link: '/category/kids'

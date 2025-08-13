@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import HeroSection from '@/components/hero-section';
 import AestheticGallery from '@/components/aesthetic-gallery';
-import FloatingModels from '@/components/floating-models';
+import ModelGrid from '@/components/model-grid';
 import CategoryGrid from '@/components/category-grid';
 import ProductGrid from '@/components/product-grid';
 import Newsletter from '@/components/newsletter';
@@ -22,8 +22,8 @@ export default function Home() {
       {/* Aesthetic Full-Size Gallery */}
       <AestheticGallery />
       
-      {/* Floating Models Section */}
-      <FloatingModels />
+      {/* Full-Size Model Grid with Random Layout */}
+      <ModelGrid />
       
       {/* Category Grid */}
       <CategoryGrid />

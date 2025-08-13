@@ -148,4 +148,29 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
+
+  /* Masonry Grid Animation */
+  @keyframes masonryFade {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .masonry-item {
+    animation: masonryFade 0.6s ease-out forwards;
+  }
+
+  /* Custom Grid Heights */
+  .grid-item-tall {
+    grid-row: span 2;
+  }
+
+  .grid-item-wide {
+    grid-column: span 2;
+  }
 }
