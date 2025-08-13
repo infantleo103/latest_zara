@@ -15,6 +15,11 @@ import Login from "@/pages/login";
 import Signup from "@/pages/signup";
 import VirtualTryOn from "@/pages/virtual-tryon";
 import Customization from "@/pages/customization";
+import AdminIndex from "@/pages/admin";
+import AdminDashboard from "@/pages/admin/dashboard";
+import AdminProducts from "@/pages/admin/products";
+import AdminOrders from "@/pages/admin/orders";
+import AdminSettings from "@/pages/admin/settings";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import SearchModal from "@/components/search-modal";
@@ -34,6 +39,11 @@ function Router() {
       <Route path="/signup" component={Signup} />
       <Route path="/virtual-tryon/:slug" component={VirtualTryOn} />
       <Route path="/customize/:slug" component={Customization} />
+      <Route path="/admin" component={AdminIndex} />
+      <Route path="/admin/dashboard" component={AdminDashboard} />
+      <Route path="/admin/products" component={AdminProducts} />
+      <Route path="/admin/orders" component={AdminOrders} />
+      <Route path="/admin/settings" component={AdminSettings} />
       <Route component={NotFound} />
     </Switch>
   );
