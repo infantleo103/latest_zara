@@ -64,9 +64,9 @@ export default function ProductGrid({ products, title, className }: ProductGridP
             >
               <div className="relative overflow-hidden bg-white">
                 <img
-                  src={product.images[0] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800'}
+                  src={product.images[0] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=900'}
                   alt={product.name}
-                  className="w-full h-80 object-cover group-hover:opacity-75 transition-opacity"
+                  className="w-full h-96 object-cover group-hover:opacity-75 transition-opacity"
                 />
                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
                   <Button

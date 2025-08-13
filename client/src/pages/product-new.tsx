@@ -362,9 +362,9 @@ function RecommendedProducts({ currentProductId }: { currentProductId: string })
             >
               <div className="space-y-4">
                 {/* Product Image */}
-                <div className="aspect-[3/4] bg-white overflow-hidden">
+                <div className="aspect-[2/3] bg-white overflow-hidden">
                   <img
-                    src={recProduct.images?.[0] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=600'}
+                    src={recProduct.images?.[0] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=800'}
                     alt={recProduct.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />

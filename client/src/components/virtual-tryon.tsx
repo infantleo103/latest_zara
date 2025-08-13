@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
 import { Camera, Upload, Sparkles, X } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
@@ -111,6 +111,9 @@ export default function VirtualTryOn({ productImage, productName }: VirtualTryOn
           <DialogTitle className="text-xl font-light tracking-wide">
             Virtual Try-On - {productName}
           </DialogTitle>
+          <DialogDescription className="text-sm text-gray-600">
+            Upload your photo to see how this outfit looks on you using our virtual try-on technology.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">

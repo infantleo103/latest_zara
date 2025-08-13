@@ -36,9 +36,9 @@ export default function CategoryGrid() {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={category.imageUrl || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000'}
+                  src={category.imageUrl || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1200'}
                   alt={`${category.name} Fashion`}
-                  className="w-full h-88 object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
                 <div className="absolute bottom-0 left-0 right-0 category-overlay">
