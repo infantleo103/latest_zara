@@ -1,6 +1,6 @@
 # Overview
 
-This is a modern e-commerce web application built as a full-stack solution featuring a fashion retail store (ZARA-inspired). The application provides a complete shopping experience with product browsing, cart management, and search functionality. It follows a monorepo structure with separate client and server directories, sharing common schemas and types through a shared directory.
+This is a high-fidelity Zara website clone featuring minimalist luxury design with aesthetic model photography and sophisticated animations. The application recreates Zara's premium fashion e-commerce experience with floating navigation, full-size indoor photoshoot images in random grid layouts, and contemporary design elements. Built as a full-stack solution with complete shopping functionality including product browsing, cart management, and search capabilities.
 
 # User Preferences
 
@@ -57,3 +57,20 @@ Preferred communication style: Simple, everyday language.
 - **Zustand**: Lightweight state management with persistence
 - **date-fns**: Date manipulation and formatting utilities
 - **clsx & tailwind-merge**: Conditional CSS class management
+
+## Recent Changes (August 2025)
+
+### Aesthetic Design Overhaul
+- **Floating Navigation**: Transparent header that becomes solid on scroll with enlarged ZARA logo
+- **Hero Section**: Full-screen carousel with rotating background images and sophisticated typography
+- **Model Grid**: Indoor photoshoot images in masonry layout with random grid alignment (Zara-inspired)
+- **Glass Morphism**: Floating elements with backdrop blur effects throughout the interface
+- **Enhanced Typography**: Extralight fonts with precise letter spacing for luxury aesthetic
+- **Parallax Effects**: Fixed background attachments for depth and visual interest
+- **Animation System**: Fade-in animations, floating elements, and smooth transitions
+
+### Component Architecture
+- **AestheticGallery**: Full-screen image sections with category overlays
+- **ModelGrid**: Random masonry grid layout for indoor model photography
+- **Enhanced Header**: Scroll-responsive navigation with scaling logo and color transitions
+- **Improved CSS**: Custom animations, glass morphism utilities, and responsive design patterns

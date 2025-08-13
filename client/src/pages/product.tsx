@@ -114,14 +114,14 @@ export default function ProductPage() {
         <div className="space-y-4">
           <div className="aspect-square bg-gray-50 overflow-hidden rounded-lg">
             <img
-              src={product.images[selectedImage] || product.images[0]}
+              src={product.images?.[selectedImage] || product.images?.[0] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800'}
               alt={product.name}
               className="w-full h-full object-cover cursor-zoom-in"
               data-testid="img-product-main"
             />
           </div>
           
-          {product.images.length > 1 && (
+          {product.images && product.images.length > 1 && (
             <div className="grid grid-cols-4 gap-2" data-testid="grid-product-thumbnails">
               {product.images.map((image, index) => (
                 <button
