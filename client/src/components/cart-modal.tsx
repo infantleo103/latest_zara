@@ -44,25 +44,25 @@ export default function CartModal() {
               {items.map((item) => (
                 <div key={item.id} className="flex space-x-4 p-2 border-b border-gray-100">
                   <Link
-                    href={`/product/${item.product.slug}`}
+                    href={`/product/${item.product?.slug || ''}`}
                     onClick={closeCart}
-                    data-testid={`link-cart-product-${item.product.slug}`}
+                    data-testid={`link-cart-product-${item.product?.slug || item.id}`}
                   >
                     <img
-                      src={item.product.images[0]}
-                      alt={item.product.name}
+                      src={item.product?.images?.[0] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100'}
+                      alt={item.product?.name || 'Product'}
                       className="w-20 h-24 object-cover"
                     />
                   </Link>
                   <div className="flex-1 space-y-2">
                     <Link
-                      href={`/product/${item.product.slug}`}
+                      href={`/product/${item.product?.slug || ''}`}
                       onClick={closeCart}
                       className="block"
-                      data-testid={`link-cart-product-name-${item.product.slug}`}
+                      data-testid={`link-cart-product-name-${item.product?.slug || item.id}`}
                     >
                       <h3 className="font-light text-sm hover:underline tracking-wide">
-                        {item.product.name}
+                        {item.product?.name || 'Product'}
                       </h3>
                     </Link>
                     {item.size && (
@@ -99,7 +99,7 @@ export default function CartModal() {
                         </Button>
                       </div>
                       <p className="text-sm font-medium" data-testid={`text-cart-price-${item.id}`}>
-                        ₹{(parseFloat(item.product.price) * item.quantity).toLocaleString('en-IN', {
+                        ₹{(parseFloat(item.product?.price || '0') * item.quantity).toLocaleString('en-IN', {
                           minimumFractionDigits: 2,
                         })}
                       </p>

@@ -53,10 +53,10 @@ export const useCartStore = create<CartStore>()(
       closeCart: () => set({ isOpen: false }),
       getTotalPrice: () => {
         const { items } = get();
-        return items.reduce(
-          (total, item) => total + parseFloat(item.product.price) * item.quantity,
-          0
-        );
+        return items.reduce((total, item) => {
+          if (!item.product?.price) return total;
+          return total + parseFloat(item.product.price) * item.quantity;
+        }, 0);
       },
       getTotalItems: () => {
         const { items } = get();

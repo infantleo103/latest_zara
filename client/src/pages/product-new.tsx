@@ -23,7 +23,7 @@ export default function ProductPage() {
   const { data: product, isLoading, error } = useQuery({
     queryKey: ['/api/products', slug],
     enabled: !!slug,
-  });
+  }) as { data: ProductWithCategory | undefined; isLoading: boolean; error: any };
 
   // Auto-select first available options
   useEffect(() => {
@@ -38,12 +38,17 @@ export default function ProductPage() {
   const handleAddToCart = () => {
     if (!product) return;
 
-    addItem({
+    const cartItem = {
+      id: `${product.id}-${selectedSize}-${selectedColor}-${Date.now()}`,
       productId: product.id,
       quantity,
       size: selectedSize || null,
       color: selectedColor || null,
-    });
+      product: product,
+      sessionId: 'session'
+    };
+
+    addItem(cartItem);
 
     toast({
       title: "Added to cart",
@@ -134,7 +139,7 @@ export default function ProductPage() {
             {/* Image Dots Indicator */}
             {productImages.length > 1 && (
               <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
-                {productImages.map((_, index) => (
+                {productImages.map((_: string, index: number) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
@@ -309,6 +314,65 @@ export default function ProductPage() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* You May Be Interested In Section */}
+      <RecommendedProducts currentProductId={product.id} />
+    </div>
+  );
+}
+
+// Recommended Products Component
+function RecommendedProducts({ currentProductId }: { currentProductId: string }) {
+  const { data: products } = useQuery({
+    queryKey: ['/api/products'],
+  }) as { data: ProductWithCategory[] | undefined };
+
+  if (!products || products.length <= 1) return null;
+
+  // Filter out current product and take first 4
+  const recommendedProducts = products
+    .filter((p) => p.id !== currentProductId)
+    .slice(0, 4);
+
+  return (
+    <div className="bg-gray-50 py-20">
+      <div className="container mx-auto px-6">
+        <h2 className="text-2xl md:text-3xl font-extralight tracking-[0.1em] text-center mb-16">
+          YOU MAY BE INTERESTED IN
+        </h2>
+        
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {recommendedProducts.map((recProduct) => (
+            <Link 
+              key={recProduct.id} 
+              href={`/product/${recProduct.slug}`}
+              className="group"
+              data-testid={`link-recommended-${recProduct.slug}`}
+            >
+              <div className="space-y-4">
+                {/* Product Image */}
+                <div className="aspect-[3/4] bg-white overflow-hidden">
+                  <img
+                    src={recProduct.images?.[0] || 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=600'}
+                    alt={recProduct.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                
+                {/* Product Info */}
+                <div className="space-y-2">
+                  <h3 className="text-sm font-light tracking-wide text-gray-900 group-hover:text-black transition-colors">
+                    {recProduct.name}
+                  </h3>
+                  <p className="text-sm font-light text-gray-700">
+                    ₹{parseFloat(recProduct.price).toLocaleString('en-IN')}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
