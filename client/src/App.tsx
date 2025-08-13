@@ -7,7 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Category from "@/pages/category";
-import Product from "@/pages/product";
+import Product from "@/pages/product-new";
+import Checkout from "@/pages/checkout";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import SearchModal from "@/components/search-modal";
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/category/:slug" component={Category} />
       <Route path="/product/:slug" component={Product} />
+      <Route path="/checkout" component={Checkout} />
       <Route component={NotFound} />
     </Switch>
   );

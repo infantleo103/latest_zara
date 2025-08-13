@@ -21,19 +21,19 @@ export default function CartModal() {
   return (
     <Sheet open={isOpen} onOpenChange={closeCart}>
       <SheetContent className="w-full sm:max-w-md" data-testid="modal-cart">
-        <SheetHeader>
+        <SheetHeader className="border-b border-gray-200 pb-4">
           <SheetTitle className="flex items-center justify-between">
-            <span>Shopping Bag</span>
-            <span className="text-sm text-gray-600" data-testid="text-cart-item-count">
-              {totalItems} {totalItems === 1 ? 'item' : 'items'}
+            <span className="text-xl font-extralight tracking-[0.1em] uppercase">Shopping Bag</span>
+            <span className="text-xs text-gray-600 font-light tracking-wide" data-testid="text-cart-item-count">
+              ({totalItems})
             </span>
           </SheetTitle>
         </SheetHeader>
 
         {items.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-64" data-testid="text-cart-empty">
-            <p className="text-gray-500 mb-4">Your cart is empty</p>
-            <Button onClick={closeCart} variant="outline" data-testid="button-continue-shopping">
+            <p className="text-gray-500 mb-6 font-light tracking-wide">Your bag is empty</p>
+            <Button onClick={closeCart} variant="outline" className="font-light tracking-wide" data-testid="button-continue-shopping">
               Continue Shopping
             </Button>
           </div>
@@ -61,7 +61,7 @@ export default function CartModal() {
                       className="block"
                       data-testid={`link-cart-product-name-${item.product.slug}`}
                     >
-                      <h3 className="font-medium text-sm hover:underline">
+                      <h3 className="font-light text-sm hover:underline tracking-wide">
                         {item.product.name}
                       </h3>
                     </Link>
@@ -119,21 +119,23 @@ export default function CartModal() {
             </div>
 
             {/* Cart Total */}
-            <div className="border-t border-gray-100 pt-4 space-y-4">
-              <div className="flex justify-between items-center text-lg font-medium">
-                <span>Total</span>
-                <span data-testid="text-cart-total">
+            <div className="border-t border-gray-200 pt-6 space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-light tracking-wide">Total</span>
+                <span className="text-lg font-light" data-testid="text-cart-total">
                   ₹{totalPrice.toLocaleString('en-IN', {
                     minimumFractionDigits: 2,
                   })}
                 </span>
               </div>
-              <Button
-                className="w-full bg-black text-white hover:bg-gray-800"
-                data-testid="button-checkout"
-              >
-                CHECKOUT
-              </Button>
+              <Link href="/checkout" onClick={closeCart}>
+                <Button
+                  className="w-full py-4 bg-black text-white font-light tracking-[0.1em] text-xs uppercase hover:bg-gray-800 transition-colors"
+                  data-testid="button-checkout"
+                >
+                  Proceed to Checkout
+                </Button>
+              </Link>
             </div>
           </div>
         )}

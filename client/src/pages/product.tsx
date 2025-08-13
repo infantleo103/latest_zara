@@ -163,7 +163,7 @@ export default function ProductPage() {
           )}
 
           {/* Size Selection */}
-          {product.sizes.length > 1 && (
+          {product.sizes && product.sizes.length > 1 && (
             <div>
               <h3 className="text-sm font-medium mb-3" data-testid="text-size-label">Size</h3>
               <Select value={selectedSize} onValueChange={setSelectedSize}>
@@ -182,7 +182,7 @@ export default function ProductPage() {
           )}
 
           {/* Color Selection */}
-          {product.colors.length > 1 && (
+          {product.colors && product.colors.length > 1 && (
             <div>
               <h3 className="text-sm font-medium mb-3" data-testid="text-color-label">Color</h3>
               <div className="flex flex-wrap gap-2">
