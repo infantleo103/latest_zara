@@ -80,7 +80,7 @@ export default function Header({ onSearchOpen }: HeaderProps) {
               : "text-4xl md:text-6xl text-white text-shadow"
           )}>
             <Link href="/" data-testid="link-home">
-              ZARA
+              Xillusions
             </Link>
           </div>
 

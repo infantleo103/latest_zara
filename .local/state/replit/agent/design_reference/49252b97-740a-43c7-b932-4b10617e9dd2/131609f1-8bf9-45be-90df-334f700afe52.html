@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZARA India | New Collection Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif']
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '88': '22rem'
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-white text-black font-sans">
+    <!-- @COMPONENT: Header -->
+    <header class="sticky top-0 bg-white z-50 border-b border-gray-100">
+        <!-- Top Bar -->
+        <div class="hidden md:block bg-black text-white text-xs py-2">
+            <div class="container mx-auto px-4 text-center">
+                FREE DELIVERY ON ORDERS OVER ₹2,990
+            </div>
+        </div>
+        
+        <!-- Main Navigation -->
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Mobile Menu Toggle -->
+                <button class="md:hidden text-xl" data-event="click:toggleMobileMenu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <!-- Logo -->
+                <div class="text-2xl md:text-3xl font-bold tracking-wider">
+                    <a href="#" data-bind="brand.name">ZARA</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#" class="hover:text-gray-600 transition-colors">WOMAN</a>
+                    <a href="#" class="hover:text-gray-600 transition-colors">MAN</a>
+                    <a href="#" class="hover:text-gray-600 transition-colors">KIDS</a>
+                    <a href="#" class="hover:text-gray-600 transition-colors">HOME</a>
+                    <a href="#" class="hover:text-gray-600 transition-colors">SALE</a>
+                </div>
+                
+                <!-- Action Icons -->
+                <div class="flex items-center space-x-4 text-lg">
+                    <button class="hover:text-gray-600 transition-colors" data-event="click:openSearch">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="hover:text-gray-600 transition-colors" data-event="click:openAccount">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <button class="hover:text-gray-600 transition-colors relative" data-event="click:openCart">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center" data-bind="cart.itemCount">2</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="md:hidden mt-4 hidden" id="mobileMenu">
+                <div class="flex flex-col space-y-4 text-center">
+                    <a href="#" class="py-2 border-b border-gray-100">WOMAN</a>
+                    <a href="#" class="py-2 border-b border-gray-100">MAN</a>
+                    <a href="#" class="py-2 border-b border-gray-100">KIDS</a>
+                    <a href="#" class="py-2 border-b border-gray-100">HOME</a>
+                    <a href="#" class="py-2">SALE</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <main>
+        <!-- @COMPONENT: HeroSection -->
+        <section class="relative">
+            <!-- Fashion model wearing elegant black coat with minimalist styling -->
+            <div class="relative h-screen bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&h=1200');">
+                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                <div class="relative z-10 h-full flex items-center justify-center">
+                    <div class="text-center text-white">
+                        <h1 class="text-6xl md:text-8xl font-light tracking-widest mb-8" data-mock="true">THE NEW</h1>
+                        <button class="bg-white text-black px-8 py-3 text-sm font-medium tracking-wide hover:bg-gray-100 transition-colors" data-event="click:viewCollection">
+                            VIEW ALL
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+                    <span class="text-sm">Scroll down</span>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: HeroSection -->
+
+        <!-- @COMPONENT: CategoryGrid -->
+        <section class="py-16">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Woman Category -->
+                    <div class="group cursor-pointer" data-event="click:navigateCategory" data-category="woman">
+                        <!-- Professional female model in sophisticated business attire -->
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000" alt="Woman's Fashion" class="w-full h-88 object-cover group-hover:scale-105 transition-transform duration-500" data-mock-image="true"/>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h2 class="text-2xl font-light tracking-wide" data-mock="true">WOMAN</h2>
+                                <p class="text-sm mt-2 opacity-90" data-mock="true">New Collection</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Man Category -->
+                    <div class="group cursor-pointer" data-event="click:navigateCategory" data-category="man">
+                        <!-- Stylish male model in contemporary menswear -->
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000" alt="Man's Fashion" class="w-full h-88 object-cover group-hover:scale-105 transition-transform duration-500" data-mock-image="true"/>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h2 class="text-2xl font-light tracking-wide" data-mock="true">MAN</h2>
+                                <p class="text-sm mt-2 opacity-90" data-mock="true">New Collection</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Kids Category -->
+                    <div class="group cursor-pointer" data-event="click:navigateCategory" data-category="kids">
+                        <!-- Children wearing trendy casual clothing in playful setting -->
+                        <div class="relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000" alt="Kids Fashion" class="w-full h-88 object-cover group-hover:scale-105 transition-transform duration-500" data-mock-image="true"/>
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h2 class="text-2xl font-light tracking-wide" data-mock="true">KIDS</h2>
+                                <p class="text-sm mt-2 opacity-90" data-mock="true">New Collection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: CategoryGrid -->
+
+        <!-- @COMPONENT: FeaturedProducts -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-light text-center mb-12 tracking-wide" data-mock="true">FEATURED PRODUCTS</h2>
+                
+                <!-- @MAP: products.map(product => ( -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Product 1 -->
+                    <div class="group cursor-pointer" data-event="click:viewProduct" data-product-id="1">
+                        <!-- Elegant wool coat displayed on mannequin in studio lighting -->
+                        <div class="relative overflow-hidden bg-white">
+                            <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800" alt="Wool Coat" class="w-full h-80 object-cover group-hover:opacity-75 transition-opacity" data-mock-image="true"/>
+                            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="bg-white p-2 rounded-full shadow-md hover:shadow-lg">
+                                    <i class="fas fa-heart text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h3 class="text-sm font-medium" data-bind="product.name" data-mock="true">WOOL BLEND COAT</h3>
+                            <p class="text-sm text-gray-600" data-bind="product.price" data-mock="true">₹12,990.00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 2 -->
+                    <div class="group cursor-pointer" data-event="click:viewProduct" data-product-id="2">
+                        <!-- Minimalist leather handbag photographed against neutral background -->
+                        <div class="relative overflow-hidden bg-white">
+                            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800" alt="Leather Handbag" class="w-full h-80 object-cover group-hover:opacity-75 transition-opacity" data-mock-image="true"/>
+                            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="bg-white p-2 rounded-full shadow-md hover:shadow-lg">
+                                    <i class="fas fa-heart text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h3 class="text-sm font-medium" data-bind="product.name" data-mock="true">LEATHER HANDBAG</h3>
+                            <p class="text-sm text-gray-600" data-bind="product.price" data-mock="true">₹8,990.00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 3 -->
+                    <div class="group cursor-pointer" data-event="click:viewProduct" data-product-id="3">
+                        <!-- Classic white dress shirt on hanger with soft lighting -->
+                        <div class="relative overflow-hidden bg-white">
+                            <img src="https://images.unsplash.com/photo-1594633313593-bab3825d0caf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800" alt="Cotton Shirt" class="w-full h-80 object-cover group-hover:opacity-75 transition-opacity" data-mock-image="true"/>
+                            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="bg-white p-2 rounded-full shadow-md hover:shadow-lg">
+                                    <i class="fas fa-heart text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h3 class="text-sm font-medium" data-bind="product.name" data-mock="true">COTTON POPLIN SHIRT</h3>
+                            <p class="text-sm text-gray-600" data-bind="product.price" data-mock="true">₹3,990.00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 4 -->
+                    <div class="group cursor-pointer" data-event="click:viewProduct" data-product-id="4">
+                        <!-- Gold jewelry pieces arranged artistically on marble surface -->
+                        <div class="relative overflow-hidden bg-white">
+                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800" alt="Statement Jewelry" class="w-full h-80 object-cover group-hover:opacity-75 transition-opacity" data-mock-image="true"/>
+                            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="bg-white p-2 rounded-full shadow-md hover:shadow-lg">
+                                    <i class="fas fa-heart text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h3 class="text-sm font-medium" data-bind="product.name" data-mock="true">STATEMENT NECKLACE</h3>
+                            <p class="text-sm text-gray-600" data-bind="product.price" data-mock="true">₹2,990.00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 5 -->
+                    <div class="group cursor-pointer" data-event="click:viewProduct" data-product-id="5">
+                        <!-- Tailored blazer on mannequin with professional styling -->
+                        <div class="relative overflow-hidden bg-white">
+                            <img src="https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800" alt="Tailored Blazer" class="w-full h-80 object-cover group-hover:opacity-75 transition-opacity" data-mock-image="true"/>
+                            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="bg-white p-2 rounded-full shadow-md hover:shadow-lg">
+                                    <i class="fas fa-heart text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h3 class="text-sm font-medium" data-bind="product.name" data-mock="true">TAILORED BLAZER</h3>
+                            <p class="text-sm text-gray-600" data-bind="product.price" data-mock="true">₹9,990.00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 6 -->
+                    <div class="group cursor-pointer" data-event="click:viewProduct" data-product-id="6">
+                        <!-- Designer sunglasses displayed on clean white background -->
+                        <div class="relative overflow-hidden bg-white">
+                            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800" alt="Sunglasses" class="w-full h-80 object-cover group-hover:opacity-75 transition-opacity" data-mock-image="true"/>
+                            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="bg-white p-2 rounded-full shadow-md hover:shadow-lg">
+                                    <i class="fas fa-heart text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h3 class="text-sm font-medium" data-bind="product.name" data-mock="true">OVERSIZED SUNGLASSES</h3>
+                            <p class="text-sm text-gray-600" data-bind="product.price" data-mock="true">₹3,590.00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 7 -->
+                    <div class="group cursor-pointer" data-event="click:viewProduct" data-product-id="7">
+                        <!-- Elegant silk scarf with artistic pattern displayed flat -->
+                        <div class="relative overflow-hidden bg-white">
+                            <img src="https://pixabay.com/get/g6734ef6139ada46a46de2ba9853327bb52f7bfce9764e068153ff65a6b9a43e523c2c373ade018a34ecfce3bf452aeb36df0870ecb13ae2c5093db1ffcea06cc_1280.jpg" alt="Silk Scarf" class="w-full h-80 object-cover group-hover:opacity-75 transition-opacity" data-mock-image="true"/>
+                            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="bg-white p-2 rounded-full shadow-md hover:shadow-lg">
+                                    <i class="fas fa-heart text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h3 class="text-sm font-medium" data-bind="product.name" data-mock="true">PRINTED SILK SCARF</h3>
+                            <p class="text-sm text-gray-600" data-bind="product.price" data-mock="true">₹4,990.00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Product 8 -->
+                    <div class="group cursor-pointer" data-event="click:viewProduct" data-product-id="8">
+                        <!-- High-end leather shoes photographed with dramatic lighting -->
+                        <div class="relative overflow-hidden bg-white">
+                            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800" alt="Leather Shoes" class="w-full h-80 object-cover group-hover:opacity-75 transition-opacity" data-mock-image="true"/>
+                            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button class="bg-white p-2 rounded-full shadow-md hover:shadow-lg">
+                                    <i class="fas fa-heart text-gray-600"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h3 class="text-sm font-medium" data-bind="product.name" data-mock="true">LEATHER OXFORD SHOES</h3>
+                            <p class="text-sm text-gray-600" data-bind="product.price" data-mock="true">₹11,990.00</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </section>
+        <!-- @END_COMPONENT: FeaturedProducts -->
+
+        <!-- @COMPONENT: EditorialSection -->
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <!-- Fashion editorial image with model in avant-garde styling -->
+                        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000" alt="Editorial Fashion" class="w-full h-full object-cover rounded-lg" data-mock-image="true"/>
+                    </div>
+                    <div class="space-y-8">
+                        <div>
+                            <h2 class="text-4xl font-light mb-6 tracking-wide" data-mock="true">THE EDIT</h2>
+                            <p class="text-gray-600 leading-relaxed" data-mock="true">
+                                Discover our curated selection of timeless pieces that define contemporary elegance. 
+                                From statement coats to refined accessories, each item is carefully chosen to elevate 
+                                your wardrobe with sophisticated style.
+                            </p>
+                        </div>
+                        <button class="bg-black text-white px-8 py-3 text-sm font-medium tracking-wide hover:bg-gray-800 transition-colors" data-event="click:shopEdit">
+                            SHOP THE EDIT
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: EditorialSection -->
+
+        <!-- @COMPONENT: Newsletter -->
+        <section class="py-16 bg-black text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-2xl font-light mb-4 tracking-wide" data-mock="true">STAY UPDATED</h2>
+                <p class="text-gray-300 mb-8 max-w-md mx-auto" data-mock="true">
+                    Be the first to know about our new collections, exclusive offers, and fashion insights.
+                </p>
+                <div class="max-w-md mx-auto">
+                    <div class="flex">
+                        <input 
+                            type="email" 
+                            placeholder="Enter your email address" 
+                            class="flex-1 px-4 py-3 bg-transparent border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-white"
+                            data-bind="newsletter.email"
+                        />
+                        <button 
+                            class="bg-white text-black px-6 py-3 hover:bg-gray-100 transition-colors"
+                            data-event="click:subscribeNewsletter"
+                        >
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- @END_COMPONENT: Newsletter -->
+    </main>
+
+    <!-- @COMPONENT: Footer -->
+    <footer class="bg-white border-t border-gray-100">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Help Section -->
+                <div>
+                    <h3 class="font-medium mb-4 text-sm tracking-wide" data-mock="true">HELP</h3>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Size Guide</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Exchange & Returns</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Shipping</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Payment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Follow Section -->
+                <div>
+                    <h3 class="font-medium mb-4 text-sm tracking-wide" data-mock="true">FOLLOW US</h3>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="https://www.instagram.com/zara/" class="hover:text-black transition-colors">Instagram</a></li>
+                        <li><a href="https://www.facebook.com/Zara" class="hover:text-black transition-colors">Facebook</a></li>
+                        <li><a href="https://x.com/ZARA" class="hover:text-black transition-colors">X</a></li>
+                        <li><a href="https://es.pinterest.com/zaraofficial" class="hover:text-black transition-colors">Pinterest</a></li>
+                        <li><a href="http://www.youtube.com/user/zara" class="hover:text-black transition-colors">YouTube</a></li>
+                        <li><a href="https://open.spotify.com/user/r6ivwuv0ebk346hhxo446pbfv" class="hover:text-black transition-colors">Spotify</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div>
+                    <h3 class="font-medium mb-4 text-sm tracking-wide" data-mock="true">COMPANY</h3>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">About Us</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Careers</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Press</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Sustainability</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Investors</a></li>
+                    </ul>
+                </div>
+
+                <!-- Policies Section -->
+                <div>
+                    <h3 class="font-medium mb-4 text-sm tracking-wide" data-mock="true">POLICIES</h3>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Terms of Use</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Cookies</a></li>
+                        <li><a href="#" class="hover:text-black transition-colors" data-mock="true">Legal Notice</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Newsletter Link -->
+            <div class="border-t border-gray-100 mt-12 pt-8">
+                <div class="text-center">
+                    <a href="https://www.zara.com/in/en/z-newsletter-nl1400.html?v1=11110" 
+                       class="inline-flex items-center space-x-2 text-sm text-gray-600 hover:text-black transition-colors">
+                        <span>JOIN OUR NEWSLETTER</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-gray-100 mt-8 pt-8 text-center text-xs text-gray-500">
+                <div class="mb-4">
+                    <p>Name and address of the manufacturer:</p>
+                    <p class="font-medium">Industria de Diseño Textil, S.A. (INDITEX, S.A.)</p>
+                    <p>Avenida de la Diputación, Edificio Inditex, 15143, Arteixo (A Coruña), Spain</p>
+                </div>
+                <p>&copy; 2024 ZARA India. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <!-- @COMPONENT: SearchModal -->
+    <div id="searchModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="bg-white w-full h-full md:w-1/2 md:h-auto md:mx-auto md:mt-20 md:rounded-lg p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-medium">Search</h2>
+                <button class="text-2xl" data-event="click:closeSearch">&times;</button>
+            </div>
+            <div class="relative mb-6">
+                <input 
+                    type="text" 
+                    placeholder="Search for products..." 
+                    class="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:border-black"
+                    data-bind="search.query"
+                />
+                <button class="absolute right-4 top-3 text-gray-400">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <!-- Search results would go here -->
+            <div class="text-center text-gray-500" data-mock="true">
+                Start typing to search for products...
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: SearchModal -->
+
+    <!-- @COMPONENT: CartModal -->
+    <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="bg-white w-full h-full md:w-96 md:h-full ml-auto">
+            <div class="p-6 border-b border-gray-100">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-xl font-medium" data-mock="true">Shopping Bag</h2>
+                    <button class="text-2xl" data-event="click:closeCart">&times;</button>
+                </div>
+                <p class="text-sm text-gray-600 mt-1" data-bind="cart.itemCount" data-mock="true">2 items</p>
+            </div>
+            
+            <!-- Cart items -->
+            <div class="p-6 space-y-6 overflow-y-auto h-96">
+                <!-- Cart Item 1 -->
+                <div class="flex space-x-4" data-mock="true">
+                    <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=120" alt="Product" class="w-20 h-24 object-cover" data-mock-image="true"/>
+                    <div class="flex-1">
+                        <h3 class="font-medium text-sm">WOOL BLEND COAT</h3>
+                        <p class="text-sm text-gray-600">Size: M</p>
+                        <p class="text-sm font-medium mt-2">₹12,990.00</p>
+                    </div>
+                    <button class="text-gray-400 hover:text-black">
+                        <i class="fas fa-trash text-sm"></i>
+                    </button>
+                </div>
+                
+                <!-- Cart Item 2 -->
+                <div class="flex space-x-4" data-mock="true">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=120" alt="Product" class="w-20 h-24 object-cover" data-mock-image="true"/>
+                    <div class="flex-1">
+                        <h3 class="font-medium text-sm">LEATHER HANDBAG</h3>
+                        <p class="text-sm text-gray-600">Color: Black</p>
+                        <p class="text-sm font-medium mt-2">₹8,990.00</p>
+                    </div>
+                    <button class="text-gray-400 hover:text-black">
+                        <i class="fas fa-trash text-sm"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Cart Total -->
+            <div class="border-t border-gray-100 p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-medium" data-mock="true">Total</span>
+                    <span class="font-medium" data-bind="cart.total" data-mock="true">₹21,980.00</span>
+                </div>
+                <button class="w-full bg-black text-white py-3 text-sm font-medium hover:bg-gray-800 transition-colors" data-event="click:checkout">
+                    CHECKOUT
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: CartModal -->
+
+    <script>
+        // Simple modal functionality
+        (function() {
+            // Mobile menu toggle
+            const mobileMenuToggle = document.querySelector('[data-event="click:toggleMobileMenu"]');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Search modal
+            const searchTrigger = document.querySelector('[data-event="click:openSearch"]');
+            const searchModal = document.getElementById('searchModal');
+            const searchClose = document.querySelector('[data-event="click:closeSearch"]');
+            
+            if (searchTrigger) {
+                searchTrigger.addEventListener('click', () => {
+                    searchModal.classList.remove('hidden');
+                });
+            }
+            
+            if (searchClose) {
+                searchClose.addEventListener('click', () => {
+                    searchModal.classList.add('hidden');
+                });
+            }
+
+            // Cart modal
+            const cartTrigger = document.querySelector('[data-event="click:openCart"]');
+            const cartModal = document.getElementById('cartModal');
+            const cartClose = document.querySelector('[data-event="click:closeCart"]');
+            
+            if (cartTrigger) {
+                cartTrigger.addEventListener('click', () => {
+                    cartModal.classList.remove('hidden');
+                });
+            }
+            
+            if (cartClose) {
+                cartClose.addEventListener('click', () => {
+                    cartModal.classList.add('hidden');
+                });
+            }
+
+            // Close modals on backdrop click
+            [searchModal, cartModal].forEach(modal => {
+                if (modal) {
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            modal.classList.add('hidden');
+                        }
+                    });
+                }
+            });
+
+            // TODO: Implement business logic for:
+            // - Product filtering and search
+            // - Cart management and checkout
+            // - User authentication
+            // - Newsletter subscription
+            // - Product image zoom
+            // - Size guide functionality
+            // - Store locator integration
+        })();
+    </script>
+</body>
+</html>
