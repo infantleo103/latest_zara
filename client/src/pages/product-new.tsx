@@ -7,6 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Minus, Plus, Heart, Share, ArrowLeft, Truck, Shield, RotateCcw, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'wouter';
 import type { ProductWithCategory } from '@shared/schema';
+import VirtualTryOn from '@/components/virtual-tryon';
 
 export default function ProductPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -277,24 +278,32 @@ export default function ProductPage() {
                 Add to Bag
               </Button>
               
-              <div className="flex space-x-3">
-                <Button
-                  variant="outline"
-                  onClick={() => setIsWishlisted(!isWishlisted)}
-                  className="flex-1 py-3 font-light tracking-wide text-xs uppercase border-gray-300"
-                  data-testid="button-wishlist"
-                >
-                  <Heart size={14} className={`mr-2 ${isWishlisted ? 'fill-current' : ''}`} />
-                  Wishlist
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex-1 py-3 font-light tracking-wide text-xs uppercase border-gray-300"
-                  data-testid="button-share"
-                >
-                  <Share size={14} className="mr-2" />
-                  Share
-                </Button>
+              <div className="space-y-3">
+                {/* Virtual Try-On */}
+                <VirtualTryOn 
+                  productImage={productImages[0]}
+                  productName={product.name}
+                />
+                
+                <div className="flex space-x-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsWishlisted(!isWishlisted)}
+                    className="flex-1 py-3 font-light tracking-wide text-xs uppercase border-gray-300"
+                    data-testid="button-wishlist"
+                  >
+                    <Heart size={14} className={`mr-2 ${isWishlisted ? 'fill-current' : ''}`} />
+                    Wishlist
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="flex-1 py-3 font-light tracking-wide text-xs uppercase border-gray-300"
+                    data-testid="button-share"
+                  >
+                    <Share size={14} className="mr-2" />
+                    Share
+                  </Button>
+                </div>
               </div>
             </div>
 
