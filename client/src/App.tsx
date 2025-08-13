@@ -14,6 +14,7 @@ import OrderSuccess from "@/pages/order-success";
 import Login from "@/pages/login";
 import Signup from "@/pages/signup";
 import VirtualTryOn from "@/pages/virtual-tryon";
+import Customization from "@/pages/customization";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import SearchModal from "@/components/search-modal";
@@ -32,6 +33,7 @@ function Router() {
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/virtual-tryon/:slug" component={VirtualTryOn} />
+      <Route path="/customize/:slug" component={Customization} />
       <Route component={NotFound} />
     </Switch>
   );

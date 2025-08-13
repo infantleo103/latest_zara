@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Heart, Minus, Plus, ShoppingBag, Truck, RotateCcw, Star, Share2, Ruler } from 'lucide-react';
+import { Heart, Minus, Plus, ShoppingBag, Truck, RotateCcw, Star, Share2, Ruler, Palette } from 'lucide-react';
 import { useCartStore } from '@/lib/cart';
 import { useToast } from '@/hooks/use-toast';
 import type { ProductWithCategory } from '@shared/schema';
@@ -288,18 +288,33 @@ export default function ProductDetailPage() {
                   {liked ? 'SAVED' : 'SAVE'}
                 </Button>
                 
-                <Button
-                  variant="outline"
-                  asChild
-                  className="h-12 font-light tracking-widest"
-                  size="lg"
-                  data-testid="button-virtual-tryon"
-                >
-                  <Link href={`/virtual-tryon/${product.slug}`}>
-                    <Star className="mr-2 h-4 w-4" />
-                    TRY ON
-                  </Link>
-                </Button>
+                {product.category?.slug === 'customized' ? (
+                  <Button
+                    variant="outline"
+                    asChild
+                    className="h-12 font-light tracking-widest"
+                    size="lg"
+                    data-testid="button-customize"
+                  >
+                    <Link href={`/customize/${product.slug}`}>
+                      <Palette className="mr-2 h-4 w-4" />
+                      CUSTOMIZE
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outline"
+                    asChild
+                    className="h-12 font-light tracking-widest"
+                    size="lg"
+                    data-testid="button-virtual-tryon"
+                  >
+                    <Link href={`/virtual-tryon/${product.slug}`}>
+                      <Star className="mr-2 h-4 w-4" />
+                      TRY ON
+                    </Link>
+                  </Button>
+                )}
               </div>
             </div>
 

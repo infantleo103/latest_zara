@@ -115,7 +115,7 @@ export default function Home() {
             <>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-12">
                 {customizedProducts.slice(0, 8).map((product) => (
-                  <Link key={product.id} href={`/product/${product.slug}`} className="group">
+                  <Link key={product.id} href={`/customize/${product.slug}`} className="group">
                     <div className="relative overflow-hidden bg-white dark:bg-gray-700 rounded-lg shadow-sm hover:shadow-lg transition-all duration-300">
                       <div className="aspect-square overflow-hidden">
                         <img
@@ -128,6 +128,13 @@ export default function Home() {
                           <span className="bg-black text-white text-xs px-2 py-1 rounded-full font-light tracking-wider">
                             CUSTOM
                           </span>
+                        </div>
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span className="bg-white text-black px-4 py-2 rounded-full font-light tracking-wider text-sm">
+                              CUSTOMIZE NOW
+                            </span>
+                          </div>
                         </div>
                       </div>
                       <div className="p-4">
